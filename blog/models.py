@@ -1,15 +1,14 @@
 from django.db import models
 
-
 class Image(models.Model):
-    title = models.CharField(max_length=512, blank=True)
+    title = models.CharField(max_length=512, blank=True, null=True)
     image = models.ImageField(null=True)
-    alt = models.CharField(max_length=512, blank=True)
+    alt = models.CharField(max_length=512, blank=True, null=True)
 
 
 class Attachment(models.Model):
     title = models.CharField(max_length=512, blank=True)
-    image = models.FileField(blank=True)
+    data = models.FileField(blank=True)
 
 
 class Tag(models.Model):
