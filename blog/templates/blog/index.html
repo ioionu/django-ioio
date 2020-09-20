@@ -1,0 +1,8 @@
+<ul>
+    {% for post in posts %}
+    <li>
+        <h2><a href="{% url 'blog:post' post.slug %}">{{ post.title }}</a></h2>
+        <div>{{ post.body|safe }}</div>
+    </li>
+    {% endfor %}
+</ul>

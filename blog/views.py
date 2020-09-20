@@ -4,10 +4,10 @@ from .models import Post
 # Create your views here.
 
 def index(request):
-  Post.objects.all().count()
-  return HttpResponse("hello derp")
+  posts = Post.objects.all()
+  return render(request, 'blog/index.html', {'posts': posts})
 
 
 def post(request, path):
   post = get_object_or_404(Post, slug=path)
-  return HttpResponse("hello {path}".format(path=path))
+  return render(request, 'blog/post.html', {'post': post})
