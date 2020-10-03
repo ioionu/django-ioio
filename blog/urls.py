@@ -7,7 +7,7 @@ from . import views
 app_name = 'blog'
 
 urlpatterns = [
-  path('', views.index, name='index'),
+  path('', views.PostList.as_view(), name='posts'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Blog alias is hungry for any path so put it last.

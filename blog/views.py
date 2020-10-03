@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
+from django.views.generic.list import ListView
 from .models import Post
 # Create your views here.
 
-def index(request):
-  posts = Post.objects.all()
-  return render(request, 'blog/index.html', {'posts': posts})
+class PostList(ListView):
+  paginate_by = 5
+  model = Post
 
 
 def post(request, path):
