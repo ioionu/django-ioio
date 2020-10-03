@@ -1,3 +1,8 @@
+{% extends 'base.html' %}
+
+{% block title %}ioio.nu index{% endblock title %}
+
+{% block content %}
 <ul>
     {% for post in posts %}
     <li>
@@ -6,3 +11,4 @@
     </li>
     {% endfor %}
 </ul>
+{% endblock  %}

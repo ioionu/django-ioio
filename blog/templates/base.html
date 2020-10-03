@@ -1,0 +1,12 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        <div class="body-wrapper">
+            {% block content %}{% endblock %}
+        </div>
+    </body>
+</html>
