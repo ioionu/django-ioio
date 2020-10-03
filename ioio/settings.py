@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = Path('.')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'debug_toolbar',
+    'sorl.thumbnail',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -49,7 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'ioio.urls'
@@ -61,7 +62,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                # 'django.template.context_processors.debug',
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -106,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-AU'
 
 TIME_ZONE = 'UTC'
 
@@ -119,7 +120,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-
+# STATICFILES_DIRS = str(BASE_DIR.joinpath('blog/static')),
 STATIC_URL = 'static/'
 STATIC_ROOT = 'static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -127,7 +128,5 @@ MEDIA_URL = 'media/'
 
 
 INTERNAL_IPS = [
-    # ...
     '127.0.0.1',
-    # ...
 ]

@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'import_export'
 ]
 
 MIDDLEWARE = [
@@ -128,5 +127,4 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = 'static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_ROOT = 'media/'
 MEDIA_URL = 'media.ioio.nu/'
