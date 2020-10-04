@@ -9,18 +9,49 @@
     {{ post.body|safe }}
 </div>
 <div>
-<ul class="images">
-{% for image in post.image.all %}
-    <li class='box'>
-        {% thumbnail image.image "1024" crop="center" as im %}
-            <a href="{{ image.image.url }}" target="_blank">
-                <img src="{{ im.url }}" width="100%">
-            </a>
-        {% endthumbnail %}
-        {% if image.image.title %}
-            <h4 class="subheading">{{image.image.title}}</h4>
-        {% endif %}
-    </li>
-{% endfor %}
-</ul>
+
+{% if post.image.count > 0 %}
+<section class="section">
+    <h3 class="title is-size-3">Images</h3>
+    <ul class="images">
+    {% for image in post.image.all %}
+        <li class='box'>
+        <div>{{image.image.url}}</div>
+            {% thumbnail image.image "1024" crop="center" as im %}
+                <a href="{{ image.image.url }}" target="_blank">
+                    <img src="{{ im.url }}" width="100%">
+                </a>
+            {% endthumbnail %}
+            {% if image.image.title %}
+                <h4 class="title is-size-4">{{image.image.title}}</h4>
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+</section>
+{% endif %}
+
+{% if post.attachment.count > 0 %}
+<section class="section">
+    <h3 class="title is-size-3">Attachments</h3>
+    <ul>
+    {% for attachment in post.attachment.all %}
+        <li class="box">
+            <h4 class="title is-size-4">{{attachment.title}}</h4>
+            <a href="{{ attachment.data.url }}" target="_blank">{{ attachment.data.name }} ({{ attachment.data.size }})</a>
+        </li>
+    </ul>
+    {% endfor %}
+</section>
+{% endif %}
+
+
+
+{% if post.tags.count > 0 %}
+<section class="section">
+    {% comment %} TODO: make tags link to listing page {% endcomment %}
+    <h3 class="title is-size-3">Tags</h3>
+    {{post.tags.all|join:", "}}
+{% endif %}
+
 {% endblock  %}

@@ -5,7 +5,7 @@ from .models import Post
 # Create your views here.
 
 class PostList(ListView):
-  paginate_by = 5
+  paginate_by = 10
   model = Post
 
 

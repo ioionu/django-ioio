@@ -12,6 +12,9 @@ class Attachment(models.Model):
     title = models.CharField(max_length=512, blank=True)
     data = models.FileField(blank=True)
 
+    def __str__(self):
+        return "{data} {title}".format(data=self.data, title=self.title)
+
 
 class Tag(models.Model):
     title = models.CharField(max_length=512, blank=True)
@@ -26,7 +29,7 @@ class Post(models.Model):
     date = models.DateTimeField('Date Published')
     image = models.ManyToManyField(to=Image, blank=True)
     attachment = models.ManyToManyField(to=Attachment)
-    tags = models.ManyToManyField(to=Tag)
+    tags = models.ManyToManyField(to=Tag, blank=True)
     slug = models.CharField(max_length=512, blank=True)
 
     def __str__(self):
