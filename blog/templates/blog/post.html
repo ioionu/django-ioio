@@ -9,15 +9,17 @@
     {{ post.body|safe }}
 </div>
 <div>
-<ul class="columns">
+<ul class="images">
 {% for image in post.image.all %}
-    <li class="column">
-        <h4>{{image.image}}</h4>
-        {% thumbnail image.image "256" crop="center" as im %}
-            <a href="{{ image.image.url }}" >
-                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+    <li class='box'>
+        {% thumbnail image.image "1024" crop="center" as im %}
+            <a href="{{ image.image.url }}" target="_blank">
+                <img src="{{ im.url }}" width="100%">
             </a>
         {% endthumbnail %}
+        {% if image.image.title %}
+            <h4 class="subheading">{{image.image.title}}</h4>
+        {% endif %}
     </li>
 {% endfor %}
 </ul>

@@ -34,14 +34,18 @@
   "deprecated": false,
   "description": "Start package for Bulma",
   "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
     "autoprefixer": "^9.7.6",
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-es2015-ie": "^6.7.0",
+    "babel-loader": "^8.1.0",
     "bulma": "^0.8.2",
+    "clean-webpack-plugin": "^3.0.0",
     "node-sass": "^4.13.1",
     "npm-run-all": "^4.1.5",
-    "postcss-cli": "^7.1.0"
+    "postcss-cli": "^7.1.0",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
   },
   "homepage": "https://github.com/jgthms/bulma-start#readme",
   "keywords": [
@@ -62,9 +66,12 @@
     "css-postcss": "postcss --use autoprefixer --output css/main.css css/main.css",
     "css-watch": "npm run css-build -- --watch",
     "deploy": "npm run css-deploy && npm run js-build",
-    "js-build": "babel _javascript --out-dir lib",
-    "js-watch": "npm run js-build -- --watch",
+    "js-build": "webpack-cli --config webpack.config.dev.js",
+    "js-watch": "webpack-cli --watch --config webpack.config.dev.js",
     "start": "npm-run-all --parallel css-watch js-watch"
   },
-  "version": "0.0.4"
+  "version": "0.0.4",
+  "dependencies": {
+    "macy": "^2.5.1"
+  }
 }
