@@ -24,6 +24,11 @@ RUN pip install --upgrade pipenv
 RUN pip install --upgrade gunicorn
 RUN pipenv install --system --deploy
 
+
+# Install deps for entrypont and psycopg.
+RUN apt update \
+    && apt install libpq-dev gcc netcat -y
+
 # RUN flake8 --ignore=E501,F401 --exclude="node_modules" .
 
 RUN mkdir -p ${APP_HOME}
