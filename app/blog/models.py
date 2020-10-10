@@ -22,13 +22,12 @@ class Tag(models.Model):
     def __str__(self):
         return self.title
 
-
 class Post(models.Model):
     title = models.CharField(max_length=512)
     body = models.TextField()
-    date = models.DateTimeField('Date Published')
+    date = models.DateTimeField('Date Published', auto_now_add=True)
     image = models.ManyToManyField(to=Image, blank=True)
-    attachment = models.ManyToManyField(to=Attachment)
+    attachment = models.ManyToManyField(to=Attachment, blank=True)
     tags = models.ManyToManyField(to=Tag, blank=True)
     slug = models.CharField(max_length=512, blank=True)
 

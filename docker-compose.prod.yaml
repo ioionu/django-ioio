@@ -2,11 +2,13 @@ version: '3.7'
 
 services:
   web:
-    build: ./app
-    # command: gunicorn ioio.wsgi:application --bind 0.0.0.0:8000
-    command: python manage.py runserver 0.0.0.0:8000
+    build:
+      context: ./app
+      dockerfile: Dockerfile.prod
+    command: gunicorn ioio.wsgi:application --bind 0.0.0.0:8000
+    #command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./app/:/home/app/web/
+      # - ./app:/usr/src/app
       - static_volume:/home/app/web/static
       - media_volume:/home/app/web/media
 
@@ -22,8 +24,12 @@ services:
     image: postgres:12
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    # environment:
+    #   - POSTGRES_DB=db_name
+    #   - POSTGRES_USER=db_user
+    #   - POSTGRES_PASSWORD=password
     env_file:
-      - ./.env.dev.db
+      - ./.env.prod.db
   nginx:
     build: ./nginx
     volumes:

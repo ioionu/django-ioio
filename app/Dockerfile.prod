@@ -42,7 +42,7 @@ RUN GID=`grep "app" /etc/group|cut -d: -f3` && adduser --system app -gid ${GID}
 COPY ./entrypoint.sh ${APP_HOME}
 
 # Copy project.
-# COPY --chown=app:app . ${APP_HOME}
+COPY --chown=app:app . ${APP_HOME}
 # RUN chown -R app:app ${APP_HOME}
 USER app
 
