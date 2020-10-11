@@ -6,14 +6,11 @@ import urllib
 from blog.models import Post, Image, Attachment, Tag
 import json
 from tablib import Dataset
-from blog.admin import PostResource
-import environ
-env = environ.Env()
-# reading .env file
-environ.Env.read_env()
+import os
 
-LOCAL_IMG_DIR = env("LOCAL_IMG_DIR")
-LOCAL_ATTACHMENT_DIR = env("LOCAL_ATTACHMENT_DIR")
+
+LOCAL_IMG_DIR = os.environ.get("LOCAL_IMG_DIR")
+LOCAL_ATTACHMENT_DIR = os.environ.get("LOCAL_ATTACHMENT_DIR")
 
 def get_or_create_tags(tags):
     return [
@@ -57,7 +54,7 @@ class Command(BaseCommand):
         Attachment.objects.all().delete()
 
         http = urllib3.PoolManager()
-        request = http.request("GET", "http://ioio.test/api/export")
+        request = http.request("GET", "http://10.20.1.2/api/export", headers={'Host': 'ioio.test'})
         data = request.data.decode('utf-8')
         posts = json.loads(data)
 

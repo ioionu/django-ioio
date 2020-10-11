@@ -6,8 +6,16 @@ Rebuilding my website in Django.
 
 ## Run
 
+### Dev
+
 ```
 docker-compose up
+```
+
+### Prod
+
+```
+docker-compose -f docker-compose.prod.yaml up
 ```
 
 
@@ -15,4 +23,5 @@ docker-compose up
 
 ```
 docker-compose exec web python manage.py migrate --noinput
+docker-compose exec web python manage.py collectstatic --noinput
 ```

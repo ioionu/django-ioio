@@ -14,16 +14,12 @@ RUN apt-get update && apt-get install apt-utils python3-psycopg2 -y
 
 # install dependencies
 # Copy the requirements.txt file.
-COPY ./Pipfile .
-COPY ./Pipfile.lock .
 COPY ./entrypoint.sh .
+COPY ./requirements.txt .
 
 # Upgrade pip
 RUN pip install --upgrade pip
-RUN pip install --upgrade pipenv
-RUN pip install --upgrade gunicorn
-RUN pipenv install --system --deploy
-
+RUN pip install -r requirements.txt
 
 # Install deps for entrypont and psycopg.
 RUN apt update \
