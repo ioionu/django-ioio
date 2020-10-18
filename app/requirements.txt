@@ -7,3 +7,5 @@ gunicorn
 django-debug-toolbar
 urllib3
 tablib
+wheel
+
