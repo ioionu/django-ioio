@@ -18,3 +18,19 @@ or:
 ```
 docker-compose exec web bash
 ```
+
+### DB
+
+#### Backup
+
+```
+docker-compose exec db pg_dump --username=db_user --dbname=db_name > /tmp/ioio-pg.sql
+```
+
+#### Restore
+
+Note the magical `-T` flag.
+
+```
+docker-compose exec -T db psql --username=db_user --dbname=db_name < /tmp/ioio-pg.sql
+```

@@ -6,7 +6,13 @@ Rebuilding my website in Django.
 
 ## Run
 
-### Dev
+### Dev Local
+
+```
+set -o allexport; source .env.dev; set +o allexport; ./manage.py runserve
+```
+
+### Dev Docker
 
 ```
 docker-compose up
